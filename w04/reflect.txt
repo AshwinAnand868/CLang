@@ -1,0 +1,36 @@
+
+	==================================================
+	Workshop #4 (Reflection part):
+	==================================================
+	Name   : Ashwin Anand
+	ID     : 152042206
+	Email  : aanand24@myseneca.ca
+	Section: IPC144 NDD
+
+	
+	Question 1 -Parallel arrays provide us the ability to group related data. Using what you coded in this workshop, briefly explain how you linked related data for any given item in the dataset? What was the ‘key’ used to accomplish this?
+	Answer 1 - Brief explaination of how I link related data for any item:
+	          Basically, I took input from the user for every specified detail related to an item like finance option, item number and other details and then stored their values in their respective arrays. After this I used for-loop starting with iterate variable as 0 in order to list out all elements in such a way, that when 0th index came it would print first element of every array at first line, then when 1th index came it would again print second element of those arrays at second line and this continues depending on how many items user wanted to forecast. To accomplish this result the key I used was number of item starting with one upto total items entered by the user.
+
+	Question 2 - Why do you think it is common practice to iterate arrays initializing the iterator variable to zero and not to a value of one? Justify your answer using an example from this workshop.
+	Answer 2 - It is a common practice to iterate arrays with iterator variable initialized as 0 because arrays are index based with indices ranging from 0 to n-1 where n is the total number of elements in the array. If there is not an array, then iterate variable initialized with 1 can also be used. Here is an example of one of the for loops I used in my workshop on the basis of this concept. 
+	
+	for (i = 0; i < totalItems; i++)
+				{
+					if (itemPriorityArray[i] == importanceRatings)
+					{
+						priortizedAmountTotal += itemCostArray[i];
+					}
+				}
+		In this case, i is 0 because I have to validate elements of an array from 0th index. Using 1 instead of 0 would mean that I am validating from 1th index (excluding 0th index) and this will create problem in the result of the program. That's why it is common pracitice in array to initialize iterator variable as 0.
+
+		Question 3 - How would you describe conceptually what an array is to a child (5-8-year-old)? How would you describe accessing an element in the array? Warning: keep your explanation simple or the child will not understand.
+		Answer 3 - I have answered this question as I am talking to a child named Ahil. So, here the word "you" is referred to Ahil. First a scenario will be presented then the relation of it with arrays.
+
+		Concept of array to a child :
+
+		Hello, Ahil! Recently, I got to know that you want to learn about array at this age. I am pretty surprised but also ready to explain this concept to you. To understand this, suppose you have 4 Dairy milk chocolates. One is of $4, other is of $6 and the rest are of 8 dollars. Hey! don't get serious, it's just imagination. Now let's continue, again suppose that you do not have the mood of eating those chocolates (even if you have), and you decided to store them because you do not want to loose them by placing here and there. After some time, you stored them into a box and placed that box somewhere so that nobody can eat your chocolates. The box you got for this purpose has seperate and special places with 1st place for $4 chocolate, 2nd place for $6 and the rest are for $8 chocolates and these places are without any gap. The next day came and you wanted to eat $6 chocolate but forgot where you had put that box. Your mom found it and kept it in the fridge. You asked your mother have she seen your chocolate box and she helped you locate it. Lastly, you took the box out of the fridge and enjoyed eating the six dollar chocolate by choosing it from the 2nd position.
+		
+		Now Ahil, I hope you understood the scenario. Now is the time to relate this example with arrays. You had four chocolates of the same type(dairy milk) with different prices right! and you stored them into a box. Now these chocolates in the concept of array would be called as elements present in the box, but we cannot store the whole chocolate in the array. We can store numbers and other details related to the chocolate in array and in this case we can store their price . So, you know now that we can store numbers in array, but you might be wondering where is the array in this example and how can you identify. In this example, your box is your array which stored those chocolates and you identify it by calling it as chocolate box (array's identifier). If you want to know which element is located where and how you can access it in array, then think of when you took your $6 chocolate out from the box. Your box had seperate place for chocolates based on their price. You picked it from the second position if you remember. In array, accessing element is almost the same, but element are stored in array from 0th place (index in technical term). So 1st position will be referred to as 0th index and the second position (which you choose) will be as 1th index and so on. If i relate this with your chocolate box, then your $4 chocolate was present at 0th index in box, $6 chocolate was present at 1st index and other two at 2nd and 3rd index respectively. So, if I combine for you, an array will be where you can store data without any gap for any item in an ordered set based on index. Now, I think you might have some superficial information about the term arrays which can help you understand this concept in future.
+
+ In this question, I have tried to explain basic concept of array and how to access element in array as per the question.

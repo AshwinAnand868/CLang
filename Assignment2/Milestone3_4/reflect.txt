@@ -1,0 +1,22 @@
+//==============================================
+// Name:           Ashwin Anand
+// Student Number: 152042206
+// Email:          aanand24@myseneca.ca
+// Section:        NDD
+// Date:           7-23-2021
+//==============================================
+// Assignment:     2
+// Milestone:      4 (Reflection)
+//==============================================
+
+
+
+
+								Reflection part Answer
+ 
+Once again, these last two milestones introduced many extra functionalities to the application including first two milestones. They enhanced my skills in order that I can get comfortable in calling functions which have pointer as parameter. For example, here is one of the functions name in the 4th milestone displayContacts with prototype as - void displayContact(const struct Contact* contact); At first I was confused because I was passing this as argument - contacts[i] (here i is the iteration number in my logic) while calling the function. When I write this argument, I was getting compiler error. I did not understand what I have to do at first because I thought I am passing the value as argument and it is okay. However, then after a while I realized that here I should pass address of the contacts[i] rather than value because the parameter of the required function is pointer. So, i passed this &contacts[i] and my problem got solved. This type of thing was required at various places in the code and then I corrected that. This is the thing I learned clearly now.
+
+Now coming to the two functions in the program - getTenDigitPhone and findContactIndex - which are of really great help because they are required multiple times in the application and rather than writing the logic of these both again and again, I could just call them whenever required which results in eliminating redundancy in the code. They are also maintainable because I can update them at only one place, however if they were not written and the logic of both was written many times at various places, then it would have been very difficult to maintain. Now regarding their usage, whenever I want to check whether the entered cell number is valid or not then I use getTenDigitPhone function whereas when I was required to match the user provided cell phone number with the one present in the structure, I used findContactIndex function. This function also checks whether the given input number is present or not in the array of structure present in the code.
+
+I think storing contacts information in the file would be better for two reasons. First of all, it would make all contacts information more readable than the information which is stored in the array of structures directly in the program. There are almost in between 7 to 9 required details for every contact of the customer. Writing these all values in the structure array makes the array looks very difficult to read. If there is a file storing those contacts details, then it would look less intimating. Moreover, plethora of contacts can be stored in the file and code still would still look good, however in this program there were only 5 contacts. Secondly, storing all the information in a structure also makes the code somewhat like an open source. If any person who is not permitted to view the code but he is needed to see only and all the values of contacts, then ultimately he would see the implementation of the code because every information for a given contact is stored there. However, if the information is stored in file then the code would not be shown to that person and only the required contact information would be shown which makes the code look like a closed source rather than open one.
+

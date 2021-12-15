@@ -1,0 +1,39 @@
+
+Name: Ashwin Anand
+Student number: 152042206
+Email: aanand24@myseneca.ca
+Section: IPC144NDD
+Date: 30-6-2021
+----------------------------------------------
+Assignment: 1 (reflection part)
+----------------------------------------------
+
+                          
+                                          Answers without questions
+                              
+Answer - 1 I found four bugs in the program. First was related to the size of middleInitial[] in the "structure Name". The size was five but it should be 7 according to user input. In the file contacts.c, user input is taken like this: scanf("%6[^\n]%*c", name->middleInitial). According to this, user can provide at most 6 characters as input, but the size was 5, so I increased up to 7 (one extra for null terminator). 
+             Original -  char middleInitial[5];
+              Corrected -  char middleInitial[7];
+
+             Second wrong statement was this:  scanf("%s%*c", &yesNo);
+            Here, yesNo is a character and %s is used for character strings. This statement was giving runtime error. I corrected it ->  scanf("%c%*c", &yesNo);
+
+ Third error was like below code:
+                             if(yesNo == "y" || yesNo="Y") { // some code };
+                       yesNo is a character, thus single quote must be used.
+                        Corrected - if(yesNo == 'y' || yesNo='Y'){ // some code }; 
+  Last error was also in if condition  ----> if(yesNo == 'y' && yesNo='Y'){ }. Since at a time yesNo can be either y or Y, I replaced && with || in above condition.
+            
+
+ Answer - 2  I would explain layout of nested structures according to 32bit system in simple English.
+ 
+ In code, there is a Contact structure which contains three nested structure objects: name of type Name, address of type Address, numbers of type Numbers. These have their unique addresses in memory. Structure "Name" contains three char arrays, each having its own unique address : firstName[] of size 31 bytes, middleInitial[] occupying 7 bytes, lastName[] occupying 36 bytes. "Address" Structure contains five members with their unique addresses in memory: there are two int variables streetNumber and apartmentNumber, each using 4 bytes. Rest are char arrays : street[], postalCode[], city[] of size 41 bytes, 8 bytes, 41 bytes respectively. Lastly, structure "Numbers" contain three char arrays: cell[], home[] and business[] with 11 bytes allocated for each. 
+
+Answer 3 - Prototype - void redundancyEliminator(int selector, struct Contact*, char yesNo); 
+This function takes an int, a pointer of type Contact, a character as parameters and performs all the common tasks required in every function of contacts.c. It is void; no return type. In order to get its functionality, I had to made some modifications in the given code.
+Answer 4 - %*c is used to discard one character or digit. In the program, specifically, it is used in scanf function because scanf, after reading a character, leaves a line in input buffer. This line is then read by the following scanf. Hence, following scanf ignores one character entered by user and produce undesired results. %*c helps to avoid such cases.
+
+Answer 5 - %[^\n] accepts character strings as input until a new line. However, %s only accept until a whitespace (space) and after that it leaves all the input in the input buffer. This is not a case with %[^\n] and that's why, %[^\n] is used more than %s in the code.
+           
+
+                                                                                              

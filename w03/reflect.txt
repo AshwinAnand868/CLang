@@ -1,0 +1,102 @@
+    ==================================================
+	Workshop #3 (Reflection Part-2):
+	==================================================
+	Name   : Ashwin Anand
+	ID     : 152042206
+	Email  : aanand24@myseneca.ca
+	Section: IPC144 NDD
+
+	
+Question - 1 Mapping the month integer value to the first three characters of the month name could have been accomplished using one of two possible selection constructs. What are they, and provide a short example of how each would be written in C to display the first two months?
+Answer -1  There are two selection constructs, which can be used while mapping month integer value to the respective month's first three characters. First one is if-elseif-else statement and other is switch statement. Following are the examples of their usage in mapping.
+  
+  Using if-elseif-else for the first two months  
+  #define _CRT_SECURE_NO_WARNINGS
+  #include<stdio.h>  
+  
+  int main(void)
+  {
+  int chosenMonth, year, logDay;
+		logDay = 1;
+		
+		printf("Enter year and month number to get mapped month's first three characters: ");
+		scanf("%d", &year);
+		scanf("%d", &chosenMonth);
+		if (chosenMonth == 1)
+		{
+			printf("%d-JAN-0%d", year, logDay);
+		}
+		else if (chosenMonth == 2)
+		{
+			printf("%d-FEB-0%d", year, logDay);
+		}
+
+		return 0;
+}
+
+Using switch for the first two months
+  #define _CRT_SECURE_NO_WARNINGS
+  #include<stdio.h>
+  
+  int main(void)
+  {
+  int chosenMonth, year, logDay;
+		logDay = 1;
+		
+		printf("Enter year and month number to get mapped month's first three characters: ");
+		scanf("%d", &year);
+		scanf("%d", &chosenMonth);
+		switch(chosenMonth)
+		{
+		    case 1:
+                   printf("%d-JAN-0%d", year, logDay);
+				   break;
+		    case 2:
+			       printf("%d-FEB-0%d", year, logDay);
+				   break;
+		}
+
+		return 0;
+	}
+
+	Question 2 - The logic applied to validate the values entered by the user required iteration. What are the 3 types of iteration constructs? What one did you use for the validation routines, and briefly explain why?
+	Answer 2 - The three types of iteration constructs or loops are - 
+	          (a) while - used when condition should be matched first before execution of loop occurs.
+			  (b) do while - used when we want to execute the loop at least once, that is condition is checked after execution.
+			  (C) for - used when total number of iterations are already known.
+			   
+			   In the logic, I used mainly do while loop for validations because user will first enter the values asked in the loop and then condition is checked for validation and then next execution.
+
+	Question 3 - Describe what you did to test and debug your program. How did you go about finding where the problems were located?
+	Answer 3 - Well, for testing the program I used mainly printf function. Whenever I writer some lines of code, first I executed it. If an error came, then I applied walkthrough technique and ready my code carefully to locate the error before executing it again. It solved many errors. However, along with walkthrough, I also used debugger to check about why in my code, for loop was executing again and again even I had set the condition. But there was error. My wrong code was like this -
+
+	for(int i = 0; i< logDate; i++)
+	{
+	/*
+
+	many lines of code
+
+	*/
+
+	logDate++;   // at last in loop
+	}
+
+	To resolve the issue, I used debugger of Visual Studio 2019. I first created breakpoints at various steps to check the changing values of each variable in the loop.After that, I build the source code and then selected start debugging option. Program's control stopped according to the set breakpoints. Then I check value of every variable in the table.To execute to next statement, I used fn+f5 key. Gradually, after executing whole loop like this for three times, which according to me, should be the last iteration for "for loop", but it did not stop and executed fourth time also. However, at this time as I was using debugger and I was able to see the reason now, from the values showed in the table. As in the for loop shown above, logDate and i both were incrementing simaltaneously which was making the condition always true. I realized my mistake and then I corrected it as this
+	
+	for(int i = 0; i< LOG_DAYS; i++)
+	{
+	/*
+
+	many lines of code
+
+	*/
+
+	
+	}
+
+	In the activity, it was given that for loop must be execute for only 3 days and LOG_DAYS named variable was also present, which I used afterwards. So, for testing I used printf function and for debugging I read my code at times and also used debugger.
+	
+
+
+
+   

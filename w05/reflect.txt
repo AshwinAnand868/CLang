@@ -1,0 +1,181 @@
+    ==================================================
+	Workshop #5 (Reflection):
+	==================================================
+	Name   : Ashwin Anand
+	ID     : 152042206
+	Email  : aanand24@myseneca.ca
+	Section: IPC144 NDD
+
+	                                   
+
+	Question 1- Describe the benefits and advantages of using user-defined types (structures) in this workshop. You must explain your answer using an example from this workshop.
+	Answer 1- According to me or what I felt about the advantages of using structures in this  workshop, I would explain here.
+
+	           1. First of all, structures can be defined according to our needs in the program. I mean, if I need a type that would represent a player in the program, then rather than using int, char and other primitive types seperately for this specific task, structures would be the best option here. Undoubtedly, I can also create an array of player like to represent player score I can use int personScores[size] and to represent person name I can use character array, but in this approach not only I have to create a seperate array for every property of player, but also this would not help to accompalish the task which was to create a type person. On the contrary, I can simply create a structure type person and would store all its properties there.
+
+			   2. Secondly, structures can also be used to organize data effectively. But How? Let's do a comparison here. Suppose, if I want to develop a game which includes a player and monster, then creating a lot of primitive types for player's lives, score or health and for monster's power or health, to name just a few, would almost create a mess in the main funtion. However, for this, if I create structures of type player and moster above the main function, then it would look better and organized.
+
+			   3. This benefit is great if one is using an IDE to make programs. Again suppose that in a program, if one have created many structures and in those structures, there are five to even thousands of members, then do one have to remember all of the members or have to visit that structure again and again if there is need for a particular member. The answer is no, provided that one is using an IDE. In the program it would be obvious, if one have created a structure and has already created an object of that structure, then he have to remember only name of that object. Whenever there is a need, he can just put a dot after that object like for player he can use player. and just after this all of the member of the player would appear in an IDE. Isn't is amazing? For me, it was very helpful in the workshop.
+
+			   Now, let's revolve these advantages around an example from this workshop. In this workshop, I have created two user-defined types. One is PlayerInfo for player and other is GameInfo for game.
+
+			 struct PlayerInfo                                  struct GameInfo  
+			 {                                                 {
+			   int nLives;                                         int nMoves;
+	           char player;                                        int dynamicPathLength;
+	           int nTreasures;                                     int bombs[maxPathLength];
+	           int hisOfPosns[maxPathLength];                     int treasures[maxPathLength];
+             };                                                 };
+	                                                            
+               If one look here, then he can understand that all advantages fit. These two structures are specific types for only player and game respectively which is the first advantage. These two looks more organized and better in the workshop and they represent only particular members which is the second advantage. Lastly, if one use IDE like I used, then he does not have two remember these members.
+       
+	   
+
+	   Question 2- If we enhanced this workshop to keep a history of games played including the endgame results, briefly describe what two major logical changes you would have to make to your program to make this possible?
+	   Answer 2- To store the total number of games played by different users and their endgame results, I use two structures. Let's see first one and an independent code to see how it co-relates with a program.
+
+	       struct Players
+          {
+		    
+	        char playerNames[1];                 
+            int gamesPlayed[1];
+          };
+                         
+		Related Code :
+
+		int main(void)
+       {
+        int thirdFlag = 1;
+        int secondFlag = 1;
+       
+        int var = 0;
+        int allPlayersCount = 0;
+        struct Players totalPlayer[10] = { 0 };
+        char name;
+        int i = 0;
+
+		      printf("Enter any char: ");
+              scanf("%c%*c", &ch);
+               for (int z = 0; z < 10 && thirdFlag; z++)
+            {
+                if(name == totalPlayer[i + z].playerNames[0])
+                {
+                    secondFlag = 0;
+                    thirdFlag = 0;
+                }
+            }
+            if (secondFlag == 0)
+            {
+                (totalPlayer[i + var].gamesPlayed[0])++;
+            }
+            if (totalPlayer[i+var].playerNames[0] == 0 && secondFlag)
+            {
+                totalPlayer[i+var].playerNames[0] = name;
+                (totalPlayer[i+var].gamesPlayed[0])++;
+                allPlayersCount++;
+                var++;
+                
+            }
+            
+            else if (totalPlayer[i].playerNames[0] != 0)
+            {
+                secondFlag = 1;
+                for (int j = 0; totalPlayer[j].playerNames[0] != '\0 ' && secondFlag; j++)
+                {
+                    if (name == totalPlayer[j].playerNames[0])
+                    {
+                        (totalPlayer[j].gamesPlayed[0])++;
+                        secondFlag = 0;
+                    }
+                    
+                }
+             }
+          }
+                
+               
+           
+      
+	  This was the first logical change in my program. However, this code is just for understanding purpose. This code is designed in such a way to store the name of player and to store the number of games played by each independent player in the structure Players, however this needs the total number of players first to work (I could not think how to make it for unlimited players, please guide me on this topic). In essense, this happens -> user or player provides its name and at first, it checks whether the player is already present in the structure. If it is already present, then it just increments the number of "gamesPlayed" by 1 for that player, by executing the opposite condition. If user is not present initially, then it adds its name to playerNames array and then also increments its game from 0 to 1. In this way it keeps record of every user.
+
+	  Second logic needs to store the endgame results of the user. For this, I made some modifications in the structure shown above.
+	  struct Players                                                  struct EndGameRes
+	  {                                                                {
+	    struct EndGameRes endGameResults;                                 int lastMoves;
+        char playerNames[1];                                              int lastLives;             
+		int treasuresFound;                                               int gamesPlayed[1];
+                                                                        };
+      };
+
+	  A piece of code to show its working :
+
+	    int nLives = 2;
+        int nMoves = 0;
+        int nTreasures = 4;
+        printf("%d\n", totalPlayer[0].gamesPlayed[0]);
+        flag = 1;
+        for (int i = 0; totalPlayer[i].playerNames[0] != '\0' && flag; i++)
+        {
+            if (ch == totalPlayer[i].playerNames[0])
+            {
+                totalPlayer[i].endGameResults.lastLives = nLives;
+                totalPlayer[i].endGameResults.lastMoves = nMoves;
+                totalPlayer[i].endGameResults.treasuresFound = nTreasures;
+
+            }
+        }
+
+		Again, this code is just for understanding purpose (independent of workshop code). Here, I am hardcoding the number of lives(left), moves(left) and treasures(found) to 2,0 and 4 just for explaination. When it is merged in the workshop code these variables are set dynamically depending upon the user. Logic --> Before the game is over, all lives, moves and treasures are stored in the shown variables above (nLives, nMoves, nTreasures) dynamically. First it will find the name of the user who was playing with the assistance of for-loop. After finding, it will save the data only for that user and then the game overs. In this way, it keeps record for every user.
+
+	 Question 3- What part of this workshop did you spend the most time working on? What did you do to overcome your difficulties?
+	 Answer 3- The part of the workshop on which my lot of time got consumed, was setting the postions of bombs by taking input from user. This part requires an input of 5 bombs at 5 places simaltaneously and will continue until the dynamic game path set by user. For this, I was required to follow this pattern
+	                   Positions [ 1- 5]: 0 0 0 0 1 
+					   Positions [ 6-10]: 1 0 0 1 1 
+					   Positions [11-15]: 1 0 1 1 1 
+					   Positions [16-20]: 0 1 0 0 0     (1's and 0's are input from the user)
+					   Positions [21-25]: 1 0 1 0 0 
+					   Positions [26-30]: 0 0 0 1 0 
+					   Positions [31-35]: 1 0 1 0 1
+
+		At first while I was designing the solution, then I came up with an idea that using scanf function directly under for-loop would give the desired results. However, when I came to code on this part, I immediately realized that scanf only, would not work because it take input only one time and then I have to press Enter, which means that I have to run for-loop again in my code and moreover, that pattern above would not be followed. After this, I thought that how can I input 5 values at a time. Again, I got an idea which was to use if-elseif-else construct and I setup 7 condition in my mind to cover path length of 35 as shown above. However, after a while I realized that what I am thinking would work only for path length of 35 and for other values it will produce unexpected results. After that, I was not able to think of any proper solution, therefore I started looking at the output of part 1 in the specifications. When, I saw the output carefully I realized that every time, in the pattern above, values of positions gets incremented by 5. Finally, to create this solution, I declared and initialized variables for those 5 inputs and then put those variables as an arguements to the scanf function. I also made some other modifications, so that my program would work for any value instead of only 35. There were also some other problems, but this took me most time. For reference it looks like below code:
+
+		  Here in this code "multipleOf" is 5, but if it is 7 it will also work and there is need to change only multipleOf for this.
+		 for (i = 0; i < treasureInputLimiter; i++)   
+	   {
+
+
+		if (start == 1 && end == endLimiter)
+		{
+			printf("   Positions [ %d- %d]: ", start, end);
+		}
+		else if (start >= startLimiter && end <= endLimiter && thirdFlag)
+		{
+			printf("   Positions [ %d-%d]: ", start, end);
+		}
+		else if (start > 10 && thirdFlag == 0)
+		{
+			printf("   Positions [%d-%d]: ", start, end);
+		}
+
+		scanf("%d %d %d %d %d", &gameInfo.treasures[Inputa], &gameInfo.treasures[Inputb], &gameInfo.treasures[Inputc], &gameInfo.treasures[Inputd], &gameInfo.treasures[Inpute]);
+
+
+		start = start + multipleOf;
+		startLimiter = start;
+		end = end + multipleOf;
+		endLimiter = end;
+		if (start > 10)
+		{
+			thirdFlag = 0;
+
+		}
+		Inputa += multipleOf;
+		Inputb += multipleOf;
+		Inputc += multipleOf;
+		Inputd += multipleOf;
+		Inpute += multipleOf;
+	}
+
+
+	      
+	
+	        

@@ -1,0 +1,52 @@
+    ==================================================
+	Workshop #6 (reflection part):
+	==================================================
+	Name   : Ashwin Anand
+	ID     : 152042206
+	Email  : aanand24@myseneca.ca
+	Section: IPC144 NDD
+
+	                      Answers
+
+1. Without indulging into padding which is used by compilers for effecient memory management of structures, it may be possible, that for the given structure, which contain multiple members, can result in more number of CPU cycles and more memory wastage. As with regards to the memory occupied by the ReportData structure, it is 60 bytes typically for 32-bit system, in which an int occupies 4 bytes and double use 8 bytes. So with 6 double members and 3 int members it takes up 60 bytes. While passing information to functions it is convinient to pass the content of object of type given structure by address. For example, in function displayReportData in the workshop, we passed the direct copy of the object which results in memory wastage. To imporve this, object can be passed by address and even one can declare it as const if there is a only need to display members' data of given struct.
+
+2. In the program, both CatFoodInfo and ReportData contain common members, which can result in a kind of redundancy. To enhance the structure ReportData, one can embed an object of type CatFoodInfo in the ReportData structure and can access that object members direcly from ReportData structure. It can be like below one:
+
+struct CatFoodInfo
+{
+    int proSku;
+	double proPrice;
+	int calsPerServ;
+	double weightInLbs;
+};
+
+struct ReportData
+{
+	struct CatFoodInfo catFoodInfo[NMAXPRODUCTS];
+	double weightInKgs;
+	int weightInGrams;
+	double totalServings;
+	double costPerServ;
+	double costPerCals;
+};
+
+Due to this modification in the structures, there are some places that needs to be changed in the program to get its functionality. According to question, if I talk specifically about the displayReportData function, then the change will be like the given below:
+
+void displayReportData(const struct ReportData reportData[], const int cheapestPro)
+{
+	int i;
+	
+	for (i = 0; i < NMAXPRODUCTS; i++)
+	{
+                        printf("%07d %10.2lf %10.1lf %10.4lf %9d %8d %8.1lf %7.2lf %7.5lf", reportData[i].catFoodInfo[i].proSku, reportData[i].catFoodInfo[i].proPrice, reportData[i].catFoodInfo[i].weightInLbs, reportData[i].weightInKgs, reportData[i].weightInGrams, reportData[i].catFoodInfo[i].calsPerServ, reportData[i].totalServings, reportData[i].costPerServ, reportData[i].costPerCals);
+                                 			
+                                                          if (i + 1 == cheapestPro)
+			{
+			    printf(" ***");
+			}
+			printf("\n");
+
+	}
+}
+
+In the printf statement, I needed to change four members to print the required content.

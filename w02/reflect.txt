@@ -1,0 +1,58 @@
+
+	==================================================
+	workshop #2 (Reflection part):
+	==================================================
+	name   : Ashwin Anand
+	id     : 152042206
+	email  : aanand24@myseneca.ca
+	section: IPC144 NDD
+
+Question 1 - Given the following C statements:
+printf("10.10 = %.15lf\n", 10.10); 
+printf("10.12 = %.15lf\n", 10.12); 
+printf("10.15 = %.15lf\n", 10.15);
+Briefly explain why 10.12 doesn't display the value expected?
+
+Answer 1 - In the case of 10.12, the value was not as expected, because of the reason that double can only represent those values accurately which takes the form a/b where a is an integer and b = 2n, where n is power of 2. It means  that the denominator should be the multiple of 2 or 2 itself to get represented correctly. If it is not, then almost nearest multiple of 2 gets printed which we can see in this case (10.1199999..9) . On the other hand, even in other cases given here, this problem can be seen. If we increase digits after decimal to 17(%.17lf), then here also value of both 10.10 and 10.15 gets changed so that they can be represented according to the discussed format a/b. This is the standard, floating points follows almost in every programming language.
+
+Question 2 - What are all the possible values that can be returned based on the following statements using the modulus operator (you many use a range to simplify your answer):
+a) intValue % 2
+b) intValue % 3
+c) intValue % 100
+
+Answer 2 - Here, if we try to replace intValue by every whole number in every part then :
+
+a) in part one (intValue % 2) range of possible remainders includes two  numbers only that is 0 and 1.
+
+b) in part two (intValue % 3) range of possible remainders includes three  numbers only and they are 0, 1 and 2.
+
+c) in part three (intValue % 100) range of possible remainders can be from 0 to 99 (0,1,2...99).
+
+Question 3 - Apply the modulus operator in the following situation:
+You are hosting a party and you order 11 pizzas. Each pizza has 12 slices, and the average person eats 3 slices, and you expect 21 people at the party. How many pizza's will be completely consumed and how many extra slices will be needed to feed the expected number of guests? What does the formula look like if you write it in the C language? Fill-in the missing parts (underscored):
+int totalSlices = 11 * 12;
+int estimatedSlicesConsumed = 21 * 3; 
+int wholePizzasEaten = ________________ _ ________________ ; 
+int extraSlicesNeeded = ________________ _ ________________ ;
+
+Answer 3 - To find completely consumed number of pizzas, the formala is :
+            
+            int wholePizzasEaten = estimatedSlicesConsumed/ slicesInOnePizza 
+	        (where slicesInOnePizza is equal to 12 according to question)
+
+			int wholePizzasEaten = 63/12 = 5
+
+			So, number of pizzas consumed completely is 5. (Answer of first missing part)
+
+			To find extra slices required, the formulas is :
+
+			int extraSlicesNeeded = estimatedSlicesConsumed % slicesInOnePizza, where slicesInOnePizza is equal to 12. 
+
+			int extraSlicesNeeded = 63%12 = 3 
+
+			So, 3 is the number of extra slices required. (Answer of second missing part)
+
+	        
+Question 4 - Briefly explain why it is often a best practice to convert floating-point values to integers when performing arithmetic operations?
+
+Answer 4 - It is always recommended to use integers instead of floating-point values before doing arithmetic operations, because integers contain finite number of digits and we can represent all of them exactly below a certain limit, whereas floating point values gets much larger in numbers and the IEE standard they follow has a fixed number of bits, making it impossible to represent most of the large float values in computer without commiting an error called round-off error (that is they round up results of calculations).Hence,the answer we get by using floating points have smaller inaccuracies which in short run seems doing no harm, but eventually in the long run for like large machine calculations, when these small errors get accumulated,they can create serious problems and the other thing is that they can represent only those values correctly whose denominator are multiples of 2 or 2 only as discussed in question one. Therefore, to avoid these round-off errors, it is often a best practice to convert a floating point value to integer and then perform arithmetic calculations, before converting it again.
